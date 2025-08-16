@@ -10,7 +10,7 @@ public:
         }
         int d=digits;
         for(int i=digits;i>0;i--){
-            int sum1=1;
+            long int sum1=1;
             long int digit=s%10;
             for(int i=d-1;i>0;i--){
                 sum1=10*sum1;
