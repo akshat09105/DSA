@@ -3,7 +3,7 @@ public:
     double myPow(double x, int n) {
         long double y=1;
         
-        y=pow(x,n);
+        y=(long double)pow(x,n);
         
         
     return y;    
