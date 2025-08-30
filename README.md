@@ -25,4 +25,12 @@
 |  |
 | ------- |
 | [1054-complement-of-base-10-integer](https://github.com/akshat09105/DSA/tree/master/1054-complement-of-base-10-integer) |
+## Array
+|  |
+| ------- |
+| [0001-two-sum](https://github.com/akshat09105/DSA/tree/master/0001-two-sum) |
+## Hash Table
+|  |
+| ------- |
+| [0001-two-sum](https://github.com/akshat09105/DSA/tree/master/0001-two-sum) |
 <!---LeetCode Topics End-->
