@@ -15,10 +15,11 @@ public:
                 int d=x%10;
                 sum=(int)d*pow(10,i)+sum;
                 x=x/10;
-            if(sum>INT_MAX || sum<INT_MIN){
-               return 0; 
-            }
+           
                
+            }
+             if(sum>INT_MAX || sum<INT_MIN){
+               return 0; 
             }
         
 
