@@ -16,16 +16,10 @@ public:
                 sum=(int)d*pow(10,i)+sum;
                 x=x/10;
            
-               
             }
              if(sum>INT_MAX || sum<INT_MIN){
                return 0; 
             }
-        
-
-        return sum;    
-        
+            return sum;    
 }
-        
-        
 };
