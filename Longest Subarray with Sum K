@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    int longestSubarray(vector<int>& arr, int k) {
+        int longest_subarray=0;long long sum=0;unordered_map<long long,int>mpp;
+        for(int i=0;i<arr.size();i++){
+            sum=sum+arr[i];
+            if(sum==k){
+                longest_subarray=max(longest_subarray,i+1);
+            }
+            int rem=sum-k;
+            if(mpp.find(rem)!=mpp.end()){
+                int length=i-mpp[rem];
+                longest_subarray=max(length,longest_subarray);
+            }
+            if(mpp.find(sum)==mpp.end()){
+                mpp[sum]=i;
+            }
+        }
+        return longest_subarray;
+        
+    }
+};
