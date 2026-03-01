@@ -1,0 +1,22 @@
+#include <bits/stdc++.h> 
+void reverse(vector<int>&arr,int start,int end){
+        while(start<=end){
+            swap(arr[start],arr[end]);
+            start++;
+            end--;
+        }
+}
+vector<int> findLeaders(vector<int> &elements, int n) {
+    vector<int>ans;
+    int maxi=INT_MIN;
+    for(int i=n-1;i>=0;i--){
+        if(elements[i]>maxi){
+            ans.push_back(elements[i]);
+            maxi=elements[i];
+        }
+
+    }
+    
+    reverse(ans,0,ans.size()-1);
+    return ans;
+}
