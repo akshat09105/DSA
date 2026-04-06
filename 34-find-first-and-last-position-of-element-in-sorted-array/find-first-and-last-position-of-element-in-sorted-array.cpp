@@ -6,7 +6,7 @@ public:
     // 1. First Position dhoondne ke liye
     int left = 0, right = nums.size() - 1;
     while (left <= right) {
-        int mid = left + (right - left) / 2; // Overflow se bachne ke liye better way
+        int mid = (left + right) / 2; // Overflow se bachne ke liye better way
         if (nums[mid] == target) {
             result[0] = mid;      // Potential answer mil gaya
             right = mid - 1;      // Par left mein check karte raho "extreme left" ke liye
