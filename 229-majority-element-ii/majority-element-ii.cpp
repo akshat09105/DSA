@@ -7,7 +7,7 @@ public:
             mpp[nums[i]]++;
             if(mpp[nums[i]]>x){
                 ans.push_back(nums[i]);
-                mpp[nums[i]]=-5*(10^4);
+                mpp[nums[i]]=INT_MIN;
             }
         }
         return ans;
