@@ -5,7 +5,7 @@ public:
         row.push_back(ans);
         for(int i=1;i<n;i++){
             ans=ans*(n-i);
-            ans=ans/(i);
+            ans/=i;
             row.push_back(ans);
         }
         return row;
