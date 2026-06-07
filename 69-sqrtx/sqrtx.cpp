@@ -4,7 +4,7 @@ public:
         if(x==0){
             return 0;
         }
-        long long left=1,right=x;
+        long long left=1;int right=x;
         int ans=1;
         long long mid;
         while(left<=right){
