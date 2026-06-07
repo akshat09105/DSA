@@ -6,9 +6,9 @@ public:
         }
         long long left=1;int right=x;
         int ans=1;
-       
+        long long mid;
         while(left<=right){
-            long long mid=left+right;
+            mid=left+right;
             mid=mid/2;
             if(mid*mid<=x){
                 ans=mid;
