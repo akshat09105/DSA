@@ -1,0 +1,30 @@
+class Solution {
+  public:
+    int power(int x,int n){
+        int ans=1;
+        for(int i=0;i<n;i++){
+            ans=ans*x;
+        }
+        return ans;
+    }
+    int nthRoot(int n, int m) {
+        // Code here
+        //i have a range of answers and i need to find the element....typical bs on answer
+        int left=0;int right=m;
+        int ans=-1;
+        while(left<=right){
+            int mid=(left+right)/2;
+            if(power(mid,n)==m){
+                return mid;
+            }
+            else if(power(mid,n)>m){
+                right=mid-1;
+            }
+            else{
+                left=mid+1;        
+            }
+        }
+
+    return ans;
+    }
+};
