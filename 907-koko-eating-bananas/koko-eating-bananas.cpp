@@ -4,7 +4,7 @@ public:
         long long h=0;
 
         for(int i=0;i<piles.size();i++){
-            h +=ceil((double)piles[i]/(double)n);
+            h +=ceil((double)piles[i]/n);
         }
         return h;
     }
