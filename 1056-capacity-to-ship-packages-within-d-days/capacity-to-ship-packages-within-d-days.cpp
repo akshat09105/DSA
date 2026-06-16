@@ -1,25 +1,17 @@
 class Solution {
 public:
     int ship_capable(vector<int>&weights,int cap){
-        int days=0;int x=cap;
+        int days=1;int load=0;
         for(int i=0;i<weights.size();i++){
-            x-=weights[i];
-            if(i==weights.size()-1 && x>0){
-            
+            if(load+weights[i]>cap){
                 days++;
-              
+                load=weights[i];
             }
-            if(x==0){
-                days++;
-                x=cap;
+            else{
+                load+=weights[i];
             }
-            else if(x<0){
-                days++;
-                x=cap;
-                i--;
-            }
-            
         }
+        
         return days;
     }
     int shipWithinDays(vector<int>& weights, int days) {
