@@ -1,0 +1,23 @@
+vector<int> findRepeatingAndMissingNumbers(vector<int> nums)
+{
+    // Write your code here.
+    int n=nums.size();
+    long long sumN=0;
+    long long sumA=0;
+    long long sumN2=0;
+    long long sumA2=0;
+    sumN=(long long)n*(n+1)/2;
+    sumN2=(long long)n*(n+1)*(2*n+1)/6;
+    for(int i=0;i<nums.size();i++){
+        sumA+=nums[i];
+        sumA2+=((long long)nums[i])*nums[i];
+    }
+    int x,y;
+    long long a=sumA-sumN;//x is duplicate and y is missing //let a=x-y
+    long long b=sumA2-sumN2;     //let b equal x2-y2
+    long long c=(b)/(a);  //let c equal to x+y
+    x=(a+c)/2;
+    y=(c)-x;
+    return {x,y};
+    
+}
