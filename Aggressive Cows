@@ -1,0 +1,38 @@
+class Solution {
+  public:
+    bool CanCowFit(vector<int>stalls,int k,int dist){
+        int cows=1;int last=stalls[0];
+        for(int i=1;i<stalls.size();i++){
+            if(stalls[i]-last>=dist){
+                cows++;
+                last=stalls[i];
+                if(cows==k){
+                    return true;
+                    
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    int aggressiveCows(vector<int> &stalls, int k) {
+        // code here
+        //we can find the maximum element
+        //ams(max of min value) range is fixed b/w 1 to maxi-mini
+        sort(stalls.begin(),stalls.end());int n=stalls.size();
+        int left=1;
+        int right=stalls[n-1]-stalls[0];int ans=1;
+        while(left<=right){
+            int mid=(left+right)/2;
+            if(CanCowFit(stalls,k,mid)==true){
+                left=mid+1;
+                ans=mid;
+            }
+            else{
+                right=mid-1;
+            }
+        }
+        return ans;
+    }
+};
