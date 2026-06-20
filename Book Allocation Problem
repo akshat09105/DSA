@@ -1,0 +1,42 @@
+class Solution {
+  public:
+    int StudentCanTakeBook(vector<int>arr,int k,int mid){
+        int student=1;int last=arr[0];
+        for(int i=1;i<arr.size();i++){
+            if(arr[i]+last>mid){
+                student++;
+                last=arr[i];
+            }
+            else{
+                last+=arr[i];
+            }
+        }
+        return student;
+    }
+    int findPages(vector<int> &arr, int k) {
+        // code here
+        if(arr.size()<k){
+            return -1;
+        }
+        int maxi=INT_MIN;int sum=0;
+        for(int i=0;i<arr.size();i++){
+            maxi=max(maxi,arr[i]);
+            sum+=arr[i];//we take sum for worst case when student is 1
+        }
+        int left=maxi;
+        int right=sum;
+        int ans=-1;
+        while(left<=right){
+            int mid=(left+right)/2;
+            if(StudentCanTakeBook(arr,k,mid)<=k){
+                right=mid-1;
+                ans=mid;
+            }
+            
+            else{
+                left=mid+1;
+            }
+        }
+        return ans;
+    }
+};
