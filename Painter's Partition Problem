@@ -1,0 +1,39 @@
+class Solution {
+  public:
+    int no_of_painter_req(vector<int>&arr,int k){
+        int hours_painter_work=arr[0];int no_of_painters=1;
+        for(int i=1;i<arr.size();i++){
+            if(hours_painter_work+arr[i]>k){
+                no_of_painters++;
+                hours_painter_work=arr[i];
+                
+            }
+            else{
+                hours_painter_work+=arr[i];
+            }
+        }
+        return no_of_painters;
+    }
+    int minTime(vector<int>& arr, int k) {
+        // code here
+        //seems like min(max) problem
+        int maxi=INT_MIN;int sum=0;
+        for(int i=0;i<arr.size();i++){
+            maxi=max(maxi,arr[i]);
+            sum+=arr[i];
+            //therefore k will drecrease from left to right and rightmost k will be 1
+            
+        }
+        int left=maxi;int right=sum;
+        while(left<=right){
+            int mid=(left+right)/2;
+            if(no_of_painter_req(arr,mid)<=k){
+                right=mid-1;
+            }
+            else{
+                left=mid+1;
+            }
+        }
+        return left;
+    }
+};
