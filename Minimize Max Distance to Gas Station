@@ -1,0 +1,42 @@
+class Solution {
+  public:
+    int GasStationReq(vector<int> &stations,long double dist){
+        int total_gastations=0;
+        for(int i=0;i<stations.size()-1;i++){
+            int GasStationBt=(stations[i+1]-stations[i])/dist;
+            if((stations[i+1]-stations[i])/dist==GasStationBt){
+                GasStationBt--;
+            }
+            total_gastations+=GasStationBt;
+        }
+        return total_gastations;
+    }
+   
+    double minMaxDist(vector<int> &stations, int K) {
+        // Code here
+        //we will do it with priority queue
+        
+        int n=stations.size();
+        if(n==1){
+            return 0.00;
+        }
+        //binary search opproach
+        long double left=0;long double right=0;
+        for(int i=0;i<n-1;i++){
+            right=max(right,(long double)stations[i+1]-stations[i]);
+        }
+        long double e=1e-6;
+        while(right-left>e){
+            long double mid=(left+right)/2.0;
+            if(GasStationReq(stations,mid)<=K){
+                right=mid;
+            }
+            else{
+                left=mid;
+            }
+        }
+        return right;
+       
+        
+    }
+};
