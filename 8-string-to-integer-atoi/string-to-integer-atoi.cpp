@@ -46,12 +46,7 @@ public:
             }
         }
         ans=ans*pos;
-        if(ans<INT_MIN){
-            return INT_MIN;
-        }
-       if(ans>INT_MAX){
-           return INT_MAX;
-       }
+        
        return ans;
 
         
