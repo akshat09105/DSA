@@ -12,7 +12,7 @@ public:
                 mpp2[t[i]]=s[i];
                 
             }
-            else if(it1==mpp1.end() && it2!=mpp1.end()){
+            else if(it1==mpp1.end() && it2!=mpp2.end()){
                 return false;
             }
             else if(it1!=mpp1.end() && it2==mpp2.end()){
