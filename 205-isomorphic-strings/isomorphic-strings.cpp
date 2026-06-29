@@ -15,7 +15,7 @@ public:
             else if(it1==mpp1.end() && it2!=mpp1.end()){
                 return false;
             }
-            else if(it1!=mpp1.end() && it2==mpp1.end()){
+            else if(it1!=mpp1.end() && it1==mpp1.end()){
                 return false;
             }
             else{
