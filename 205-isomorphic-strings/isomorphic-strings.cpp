@@ -19,10 +19,7 @@ public:
                 return false;
             }
             else{
-                if(it1->second==t[i] && it2->second==s[i]){
-                    continue;
-                }
-                else{
+                if(it1->second!=t[i] || it2->second!=s[i]){
                     return false;
                 }
             }
