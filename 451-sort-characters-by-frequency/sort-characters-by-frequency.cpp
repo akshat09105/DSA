@@ -3,12 +3,12 @@ public:
     string frequencySort(string s) {
         unordered_map<char,int>mpp;
         for(int i=0;i<s.size();i++){
-            mpp[s[i]]++;   
+            mpp[s[i]]++;
         }
         vector<pair<char,int>>ans(mpp.begin(),mpp.end());
         sort(ans.begin(),ans.end(),[](const auto &a,const auto &b){
             if(a.second==b.second){
-                return a.first<b.first;
+            return    a.first<b.first;
             }
             return a.second>b.second;
         });
