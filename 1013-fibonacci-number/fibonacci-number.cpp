@@ -1,14 +1,7 @@
 class Solution {
 public:
     int fib(int n) {
-        int a=0,b=1,s;
-        for(int i=0;i<n;i++){
-            s=a+b;
-            a=b;
-            b=s;
-        }
-        return a;
-
-        
+        if(n<=1)return n;
+        return fib(n-1)+fib(n-2);
     }
 };
