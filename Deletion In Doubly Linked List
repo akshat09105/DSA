@@ -1,0 +1,57 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+            int data;
+            Node *next;
+            Node *prev;
+            Node(int data)
+            {
+                this->data = data;
+                this->next = NULL;
+                this->prev = NULL;
+            }
+        };
+
+*****************************************************************/
+
+void deleteNode(Node * ( & head), int pos) {
+    // Write your code here.
+    //no condition for head==nullptr as array is bigger than 2
+    Node* temp=head;int count=-1;
+    while(temp!=nullptr){
+        count++;
+        if(count==pos){
+            break;
+        }
+        temp=temp->next;
+    }
+    
+    Node* prev=temp->prev;
+    Node* front=temp->next;
+    if(prev==nullptr && front==nullptr){
+        delete(head);
+    }
+    else if(prev==nullptr){
+        head=head->next;
+        temp->next=nullptr;
+        head->prev=nullptr;
+        delete(temp);
+    }
+    else if(front==nullptr){
+        prev->next=front;
+        temp->prev=nullptr;
+        delete(temp);
+    }
+    else{
+        prev->next=front;
+        front->prev=prev;
+        temp->prev=nullptr;
+        temp->next=nullptr;
+        delete(temp);
+    }
+}
