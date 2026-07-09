@@ -1,0 +1,52 @@
+/*
+Following is the class structure of the Node class:
+
+class Node
+{
+public:
+    int data;
+    Node *next,*prev;
+    Node()
+    {
+        this->data = 0;
+        next = NULL;
+        prev= NULL;
+    }
+    Node(int data)
+    {
+        this->data = data; 
+        this->next = NULL;
+        this->prev= NULL;
+    }
+    Node(int data, Node* next, Node *prev)
+    {
+        this->data = data;
+        this->next = next;
+        this->prev= prev;
+    }
+};
+
+*/
+void reverse(Node* left,Node* right){
+        swap(left->data,right->data);
+    }
+Node* reverseDLL(Node* head)
+{   
+    Node* right=head;
+        Node* left=head;
+        int high=-1;
+        while(right->next!=nullptr){
+            high++;
+            right=right->next;
+        }
+        int low=0;
+        while(low<=high){
+            reverse(left,right);
+            left=left->next;
+            right=right->prev;
+            low++;high--;
+        }
+        return head;
+    // Write your code here   
+}
+
