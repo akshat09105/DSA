@@ -15,17 +15,15 @@ public:
             return head;
         }
         //solving it by 2 pointer approach(trailing pointer technique)
-        ListNode* curr=head;ListNode* evenNode=head->next;int count=1;ListNode* store=head;
-        while(curr!=nullptr && curr->next!=nullptr){
-            if(count%2!=0 && curr->next->next!=nullptr){
-                store=curr->next->next;
-            }
-            ListNode* forward=curr->next;
-            curr->next=curr->next->next;
-            curr=forward;
-            count++;
+        ListNode* odd=head;ListNode* even=head->next;ListNode* evenHead=even;
+        while(even!=nullptr&&even->next!=nullptr){
+            odd->next=even->next;
+            odd=odd->next;
+            even->next=odd->next;
+            
+            even=even->next;
         }
-        store->next=evenNode;
+        odd->next=evenHead;
         return head;
 
     }
