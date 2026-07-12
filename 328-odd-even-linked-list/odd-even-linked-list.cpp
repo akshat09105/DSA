@@ -17,10 +17,10 @@ public:
         //solving it by 2 pointer approach(trailing pointer technique)
         ListNode* odd=head;ListNode* even=head->next;ListNode* evenHead=even;
         while(even!=nullptr&&even->next!=nullptr){
-            odd->next=even->next;
-            odd=odd->next;
-            even->next=odd->next;
+            odd->next=odd->next->next;
             
+            even->next=even->next->next;
+            odd=odd->next;
             even=even->next;
         }
         odd->next=evenHead;
