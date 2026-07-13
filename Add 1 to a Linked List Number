@@ -1,0 +1,51 @@
+/* Structure of linked list Node
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+};
+*/
+class Solution {
+  public:
+    Node* reverse(Node* head){
+        Node* prev=nullptr;
+        Node* temp=head;
+        while(temp!=nullptr){
+            Node* forward=temp->next;
+            temp->next=prev;
+            prev=temp;
+            temp=forward;
+        }
+        return prev;
+    }
+    Node* addOne(Node* head) {
+        if(head->next==nullptr){
+            head->data+=1;
+            return head;
+        }
+        // code here
+        head=reverse(head);
+        Node* temp=head;
+        while(temp!=nullptr){
+            temp->data+=1;
+            if(temp->data%10==0){
+                temp->data=0;
+                if(temp->next==nullptr){
+                    temp->next=new Node(1);
+                    temp=temp->next;
+                    break;
+                }
+                temp=temp->next;
+                continue;
+            }
+            break;
+        }
+        head=reverse(head);
+        return head;
+    }
+};
