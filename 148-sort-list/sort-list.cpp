@@ -54,12 +54,13 @@ public:
         if(head==nullptr||head->next==nullptr){
             return head;
         }
-        ListNode* middleNode=middle(head);
-        ListNode* leftHead=head;
-        ListNode* rightHead=middleNode->next;
-        middleNode->next=nullptr;
-        leftHead=sortList(leftHead);
-        rightHead=sortList(rightHead);
-        return mergeTwoLists(leftHead,rightHead);
+        ListNode* mid=middle(head);
+        ListNode* lefthead=head;
+        ListNode* righthead=mid->next;
+        mid->next=nullptr;
+        lefthead=sortList(lefthead);
+        righthead=sortList(righthead);
+        return mergeTwoLists(lefthead,righthead);
+        
     }
 };
