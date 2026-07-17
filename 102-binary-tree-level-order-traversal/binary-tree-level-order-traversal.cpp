@@ -13,12 +13,14 @@ class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>>ans;
-        if(root==nullptr)return ans;
-        queue<TreeNode*>q;
+        if(root==nullptr){
+            return ans;
+        }
+        queue<TreeNode*>q;//will use queue has works on the principle FIFO
         q.push(root);
         while(!q.empty()){
-            vector<int>level;
             int size=q.size();
+            vector<int>level;
             for(int i=0;i<size;i++){
                 TreeNode* Node=q.front();
                 q.pop();
@@ -27,7 +29,6 @@ public:
                 level.push_back(Node->val);
             }
             ans.push_back(level);
-
         }
         return ans;
     }
