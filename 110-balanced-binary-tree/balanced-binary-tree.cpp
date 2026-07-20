@@ -16,9 +16,13 @@ public:
             return 0;
         }
         int lh=heightofBalancedTree(root->left);
-        if(lh==-1)return -1;
+        if(lh==-1){
+            return -1;
+        }
         int rh=heightofBalancedTree(root->right);
-        if(rh==-1)return -1;
+        if(rh==-1){
+            return -1;
+        }
         if(abs(lh-rh)>1)return -1;
         return 1+max(lh,rh);
     }
