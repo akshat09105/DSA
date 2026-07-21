@@ -1,0 +1,60 @@
+/* Node Structure
+class Node {
+  public:
+    int data;
+    Node* left, *right;
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+}; */
+
+class Solution {
+    bool leafNode(Node* root){
+        if(!root->left&&!root->right){
+            return true;
+        }
+        return false;
+    }
+    void leftboundary(Node* root,vector<int>&ans){
+        Node* curr=root->left;
+        while(curr){
+            if(!leafNode(curr))ans.push_back(curr->data);
+            if(curr->left)curr=curr->left;
+            else curr=curr->right;
+        }
+    }
+    void leafboundary(Node* root,vector<int>&ans){
+        if(root==nullptr){
+            return;
+        }
+        if(leafNode(root))ans.push_back(root->data);
+        leafboundary(root->left,ans);
+        leafboundary(root->right,ans);
+    }
+    void rightboundary(Node* root,vector<int>&ans){
+        Node* curr=root->right;
+        vector<int>right;
+        while(curr){
+            if(!leafNode(curr))right.push_back(curr->data);
+            if(curr->right)curr=curr->right;
+            else curr=curr->left;
+        }
+        for(int i=right.size()-1;i>=0;i--){
+            ans.push_back(right[i]);
+        }
+    }
+  public:
+    vector<int> boundaryTraversal(Node *root) {
+        // code here
+        vector<int>ans;
+        if(root==nullptr)return ans;
+        ans.push_back(root->data);
+        if(leafNode(root))return ans;
+        leftboundary(root,ans);
+        leafboundary(root,ans);
+        rightboundary(root,ans);
+        return ans;
+        
+    }
+};
