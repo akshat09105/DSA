@@ -1,0 +1,54 @@
+#include <bits/stdc++.h> 
+/*   
+    template <typename T = int>
+	class TreeNode
+	{
+		public:
+		T data;
+		TreeNode<T> *left;
+		TreeNode<T> *right;
+
+		TreeNode(T data)
+		{
+			this->data = data;
+			left = NULL;
+			right = NULL;
+		}
+
+		~TreeNode()
+		{
+			if (left != NULL)
+			{
+		  		delete left;
+			}
+			if (right != NULL)
+			{
+			 	delete right;
+			}
+		}
+	};
+*/
+
+bool GetPath(TreeNode<int>* root,vector<int>&ans,int k){
+	if(root==nullptr){
+		return false;
+	}
+	ans.push_back(root->data);
+	if(root->data==k){
+		return true;
+	}
+	if(GetPath(root->left,ans,k)||GetPath(root->right,ans,k)){
+		return true;
+	}
+	ans.pop_back();
+	return false;
+
+}
+vector<int> pathInATree(TreeNode<int> *root, int x)
+{
+    // Write your code here.
+	vector<int>ans;
+	GetPath(root,ans,x);
+	return ans;
+
+}
