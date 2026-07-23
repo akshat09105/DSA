@@ -21,28 +21,20 @@ public:
         if(root==nullptr){
             return;
         }
+        path+=(to_string(root->val));
         if(isLeaf(root)){
-            path.push_back('-');
-            path.push_back('>');
-            path+=(to_string(root->val));
             ans.push_back(path);
+            return;
         }
         path.push_back('-');
         path.push_back('>');
-        path+=(to_string(root->val));
         paths(root->left,path,ans);
         paths(root->right,path,ans);
     }
     vector<string> binaryTreePaths(TreeNode* root) {
         vector<string>ans;
         string path;
-        path+=to_string(root->val);
-        if(isLeaf(root)){
-            ans.push_back(path);
-            return ans;
-        }
-        paths(root->left,path,ans);
-        paths(root->right,path,ans);
+        paths(root,path,ans);
         return ans;
 
     }
