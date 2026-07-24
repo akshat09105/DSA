@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void combination(vector<int>ds,vector<vector<int>>&ans,int n,int target,int index,vector<int>candidates){
+    void combination(vector<int>&ds,vector<vector<int>>&ans,int n,int target,int index,vector<int>candidates){
         if(target==0){
             ans.push_back(ds);
             return;
