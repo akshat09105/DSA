@@ -1,0 +1,49 @@
+/* Structure of a Tree Node
+class Node {
+public:
+    int data;
+    Node* left, *right;
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+}; */
+
+class Solution {
+  public:
+    bool leafNode(Node* root){
+        if(root->left==nullptr && root->right==nullptr){
+            return true;
+        }
+        return false;
+    }
+    int SumProperty(Node* root){
+        if(root==nullptr){
+            return 0;
+        }
+        if(leafNode(root)){
+            return root->data;
+        }
+        int left=SumProperty(root->left);
+        if(left==-1){
+            return -1;
+        }
+        int right=SumProperty(root->right);
+        if(right==-1){
+            return -1;
+        }
+        if(root->data!=(left+right)){
+            return -1;
+        }
+        return root->data;
+    }
+    bool isSumProperty(Node *root) {
+        // code here
+        
+        if(SumProperty(root)==-1){
+            return false;
+        }
+        return true;
+        
+    }
+};
