@@ -11,18 +11,32 @@
  */
 class Solution {
 public:
-    vector<int>inorderTransversalAnswer(TreeNode* root,vector<int>ans){
-        if(root==nullptr){
-            return ans;
+    vector<int>inorderTransversalAnswer(TreeNode* root){
+        stack<TreeNode*>st;
+        TreeNode* node=root;
+        vector<int>ans;
+        if(node==nullptr){
+            ans;
         }
-        ans=inorderTransversalAnswer(root->left,ans);
-        ans.push_back(root->val);
-        ans=inorderTransversalAnswer(root->right,ans);
+        while(true){
+            if(node!=nullptr){
+                st.push(node);
+                node=node->left;
+            }
+            else{
+                if(st.empty()==true)break;
+                node=st.top();
+                st.pop();
+                ans.push_back(node->val);
+                node=node->right;
+
+            }
+        }
         return ans;
     }
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int>ans;
-        ans=inorderTransversalAnswer(root,ans);
+        ans=inorderTransversalAnswer(root);
         return ans;
     }
 };
