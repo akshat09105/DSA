@@ -22,12 +22,12 @@ public:
         
     }
     TreeNode* tree(vector<int>&preOrder,int preOrderStart,int preOrderEnd,vector<int>&InOrder,int InOrderStart,int InOrderEnd,unordered_map<int,int>&mpp){
-        if(preOrderStart>preOrderEnd||InOrderStart>InOrderEnd)return nullptr;
+        if(preOrderStart>preOrderEnd || InOrderStart>InOrderEnd)return nullptr;
         TreeNode* root=new TreeNode(preOrder[preOrderStart]);
-        int indexIO=mpp[preOrder[preOrderStart]];
-        int left=indexIO-InOrderStart;
-        root->left=tree(preOrder,preOrderStart+1,preOrderStart+left,InOrder,InOrderStart,indexIO-1,mpp);
-        root->right=tree(preOrder,preOrderStart+left+1,preOrderEnd,InOrder,indexIO+1,InOrderEnd,mpp);
+        int index=mpp[preOrder[preOrderStart]];
+        int left=mpp[preOrder[preOrderStart]]-InOrderStart;
+        root->left=tree(preOrder,preOrderStart+1,preOrderStart+left,InOrder,InOrderStart,index-1,mpp);
+        root->right=tree(preOrder,preOrderStart+left+1,preOrderEnd,InOrder,index+1,InOrderEnd,mpp);
 
         return root;
 
