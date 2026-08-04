@@ -1,0 +1,37 @@
+/* Structure of a Binary Tree Node
+class Node {
+  public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+};*/
+
+class Solution {
+  public:
+    int kthNO(Node* root,int &count,int k){
+        if(root==nullptr){
+            return -1;
+        }
+        int right=kthNO(root->right,count,k);
+        if(right!=-1){
+            return right;
+        }
+        count++;
+        if(count==k)return root->data;
+        int left=kthNO(root->left,count,k);
+        if(left!=-1)return left;
+        return -1;
+
+    }
+    int kthLargest(Node *root, int k) {
+        // code here
+        int count=0;
+        return kthNO(root,count,k);
+        
+    }
+};
