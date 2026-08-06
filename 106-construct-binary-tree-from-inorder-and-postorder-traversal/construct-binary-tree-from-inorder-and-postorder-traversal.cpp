@@ -20,13 +20,13 @@ public:
         return build(inorder,0,n-1,postorder,0,n-1,mpp);
         
     }
-    TreeNode* build(vector<int>&inorder,int inStart,int inEnd,vector<int>&preOrder,int preStart,int preEnd,unordered_map<int,int>&mpp){
+    TreeNode* build(vector<int>&inorder,int inStart,int inEnd,vector<int>&postOrder,int postStart,int postEnd,unordered_map<int,int>&mpp){
         if(inStart>inEnd)return nullptr;
-        TreeNode* root=new TreeNode(preOrder[preEnd]);
-        int inroot=mpp[preOrder[preEnd]];
+        TreeNode* root=new TreeNode(postOrder[postEnd]);
+        int inroot=mpp[postOrder[postEnd]];
         int left=inroot-inStart;
-        root->left=build(inorder,inStart,inroot-1,preOrder,preStart,preStart+left-1,mpp);
-        root->right=build(inorder,inroot+1,inEnd,preOrder,preStart+left,preEnd-1,mpp);
+        root->left=build(inorder,inStart,inroot-1,postOrder,postStart,postStart+left-1,mpp);
+        root->right=build(inorder,inroot+1,inEnd,postOrder,postStart+left,postEnd-1,mpp);
         return root;
 
 
