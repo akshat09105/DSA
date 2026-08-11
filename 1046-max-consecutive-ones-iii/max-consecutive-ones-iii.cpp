@@ -10,9 +10,9 @@ public:
                 if(nums[left]==0)zeroes--;
                 left++;
             }
-            if(zeroes<=k){
+            
                 maxlen=max(maxlen,right-left+1);
-            }
+            
             right++;
         }
         return maxlen;
