@@ -2,11 +2,14 @@ class Solution {
 public:
     void combination(vector<int>&ds,vector<vector<int>>&ans,int n,int target,int index,vector<int>candidates){
         if(target==0){
-            ans.push_back(ds);
-            return;
+            ans.push_back(ds);            
         }
-        for(int i=index;i<n;i++){
-            if(i>index && candidates[i]==candidates[i-1])continue;
+            
+        
+        for(int i=index;i<candidates.size();i++){
+            if(i>index&&candidates[i]==candidates[i-1]){
+                continue;
+            }
             if(candidates[i]>target)break;
             ds.push_back(candidates[i]);
             combination(ds,ans,n,target-candidates[i],i+1,candidates);
