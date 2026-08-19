@@ -8,15 +8,12 @@ public:
             return;
         }
         for(;i<=9;i++){
-            if(i<=n){
-                ds.push_back(i);
-                fn(ans,ds,k,n-i,i+1);
-                ds.pop_back();
-            }
-            else{
-                break;
-            }
+            
+            ds.push_back(i);
+            fn(ans,ds,k,n-i,i+1);
+            ds.pop_back();
         }
+        return;
     }
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<vector<int>>ans;
