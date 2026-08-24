@@ -1,7 +1,7 @@
 class Solution {
 public:
 
-    //memoization
+    //tabulation
     int f(vector<int>&nums,vector<int>&ds,int index,int base){
         if(index==base)return nums[base];
         if(index<base)return 0;
@@ -10,12 +10,27 @@ public:
         int notpick=f(nums,ds,index-1,base);
         return ds[index]=max(pick,notpick);
     }
-
     int rob(vector<int>& nums) {
         if(nums.size()==1)return nums[0];
-        vector<int>dp(nums.size(),-1);
-        vector<int>dp2(nums.size(),-1);
-        return max(f(nums,dp,nums.size()-1,1),f(nums,dp2,nums.size()-2,0));
+        int n=nums.size();
+        vector<int>dp(n,-1);
+        dp[0]=nums[0];
+        for(int i=1;i<n-1;i++){
+            int pick=nums[i];
+            if(i>1)pick+=dp[i-2];
+            int notPick=dp[i-1];
+            dp[i]=max(pick,notPick);
+        }
+        int withoutLast=dp[n-2];
+        dp[1]=nums[1];
+        for(int i=2;i<n;i++){
+            int pick=nums[i];
+            if(i>2)pick+=dp[i-2];
+            int notPick=dp[i-1];
+            dp[i]=max(pick,notPick);
+        }
+        int withOutZero=dp[n-1];
+        return max(withoutLast,withOutZero);
         
     }
 };
