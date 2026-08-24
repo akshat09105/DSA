@@ -1,6 +1,6 @@
 class Solution {
 public:
-    //tabulation
+    //space optimization
     int f(vector<int>&nums,int index,vector<int>&dp){
         if(index==0)return nums[0];
         if(index<0)return 0;
@@ -11,15 +11,18 @@ public:
     }
     int rob(vector<int>& nums) {
         int n=nums.size();
-        vector<int>dp(n,-1);
-        dp[0]=nums[0];
+        
+        int prev=nums[0];
+        int prev2=0;
         for(int i=1;i<n;i++){
             int pick=nums[i];
-            if(i>1)pick+=dp[i-2];
-            int notPick=dp[i-1];
-            dp[i]=max(pick,notPick);
+            if(i>1)pick+=prev2;
+            int notPick=prev;
+            int curri=max(pick,notPick);
+            prev2=prev;
+            prev=curri;
         }
-        return dp[n-1];
+        return prev;
 
     }
 };
