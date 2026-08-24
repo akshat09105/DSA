@@ -1,5 +1,7 @@
 class Solution {
 public:
+
+    //memoization
     int f(vector<int>&nums,vector<int>&ds,int index,int base){
         if(index==base)return nums[base];
         if(index<base)return 0;
@@ -8,6 +10,7 @@ public:
         int notpick=f(nums,ds,index-1,base);
         return ds[index]=max(pick,notpick);
     }
+
     int rob(vector<int>& nums) {
         if(nums.size()==1)return nums[0];
         vector<int>dp(nums.size(),-1);
