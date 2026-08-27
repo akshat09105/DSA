@@ -8,14 +8,15 @@ public:
         if(i<0||j<0){
             return 0;
         }
-        if(dp[i][j]!=-1)return dp[i][j];
+        if(dp[i][j]!=0)return dp[i][j];
         int up=f(i-1,j,dp);
         int left=f(i,j-1,dp);
         return dp[i][j]=up+left;
     }
+    //now applying tabulation
     int uniquePaths(int m, int n) {
         //all paths need to be find to recurssion is clicked->TC-:2^(m*n)
-        vector<vector<int>>dp(m,vector<int>(n,-1));
+        vector<vector<int>>dp(m,vector<int>(n,0));
         return f(m-1,n-1,dp);
     }
 };
