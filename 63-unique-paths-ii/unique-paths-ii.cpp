@@ -12,6 +12,7 @@ public:
         int left=f(i,j-1,obstacleGrid,dp);
         return dp[i][j]=up+left;
     }
+    //tabulation
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
         int n=obstacleGrid.size();
         int m=obstacleGrid[0].size();
