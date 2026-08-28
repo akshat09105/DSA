@@ -14,7 +14,7 @@ public:
         int Downright=matrix[i][j]+f(i+1,j+1,n,matrix,dp);
         return dp[i][j]=min(Downleft,min(Down,Downright));
     }
-    
+    //Tabulation
     int minFallingPathSum(vector<vector<int>>& matrix) {
         int n=matrix.size();int mini=INT_MAX;
         vector<vector<int>>dp(n,vector<int>(n,1e7));
