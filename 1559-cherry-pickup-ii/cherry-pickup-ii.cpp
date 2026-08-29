@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //Memoization
     int f(int i,int n,int j1,int j2,int m,vector<vector<int>>&grid,vector<vector<vector<int>>>&dp){
         if(j1<0||j1>=m||j2<0||j2>=m)return -1e8;
         if(i==n-1){
@@ -21,6 +22,7 @@ public:
         return dp[i][j1][j2]=maxi;
 
     }
+    
     int cherryPickup(vector<vector<int>>& grid) {
         int n=grid.size();
         int m=grid[0].size();
