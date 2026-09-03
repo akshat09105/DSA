@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //memoization
     int f(vector<int>coins,int amount,int index,vector<vector<int>>&dp){
         if(index==0){
             if(amount%coins[index]==0)return amount/coins[0];
@@ -20,7 +21,8 @@ public:
         if(ans>=1e9)return -1;
         return ans;
     }
-    int coinChange(vector<int>& coins, int amount) {
+    //tabulation
+    int coincHange(vector<int>& coins, int amount) {
         sort(coins.begin(),coins.end());
         int n=coins.size();
         vector<vector<int>>dp(n,vector<int>(amount+1,1e9));
@@ -39,6 +41,31 @@ public:
             }
         }
         int ans=dp[n-1][amount];
+        if(ans>=1e9)return -1;
+        return ans;
+    }
+    //space optimize
+    int coinChange(vector<int>& coins, int amount) {
+        sort(coins.begin(),coins.end());
+        int n=coins.size();
+        vector<int>prev(amount+1,1e9);
+        for(int t=0;t<=amount;t++){
+            if(t%coins[0]==0)prev[t]=t/coins[0];
+            else prev[t]=1e9;
+        }
+        for(int index=1;index<n;index++){
+            vector<int>curr(amount+1,0);
+            for(int t=0;t<=amount;t++){
+                int notTake=0+prev[t];
+                int take=1e9;
+                if(coins[index]<=t){
+                    take=1+curr[t-coins[index]];
+                }
+                curr[t]=min(take,notTake);  
+            }
+            prev=curr;
+        }
+        int ans=prev[amount];
         if(ans>=1e9)return -1;
         return ans;
     }
