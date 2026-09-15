@@ -29,7 +29,7 @@ public:
         return f(n,m,text1,text2,dp);
     }
     //Tabulation
-    int longestCommonSubsequence(string text1, string text2) {
+    int LongestCommonSubsequence(string text1, string text2) {
         int n=text1.size();int m=text2.size();
         vector<vector<int>>dp(n+1,vector<int>(m+1,0));
         for(int i=0;i<=n;i++)dp[i][0]=0;
@@ -47,5 +47,23 @@ public:
         return dp[n][m];
     }
     //space optimal
+    int longestCommonSubsequence(string text1, string text2) {
+        int n=text1.size();int m=text2.size();
+        vector<int>prev(m+1,0);
+        for(int j=0;j<=m;j++)prev[j]=0;
+        for(int index1=1;index1<=n;index1++){
+            vector<int>curr(m+1,0);
+            for(int index2=1;index2<=m;index2++){
+                if(text1[index1-1]==text2[index2-1]){
+                    curr[index2]=1+prev[index2-1];
+                }
+                else{
+                curr[index2]=max(prev[index2],curr[index2-1]);
+                }
+            }
+            prev=curr;
+        }
+        return prev[m];
+    }
 
 };
