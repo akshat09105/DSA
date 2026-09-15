@@ -37,13 +37,15 @@ public:
         for(int index1=1;index1<=n;index1++){
             for(int index2=1;index2<=m;index2++){
                 if(text1[index1-1]==text2[index2-1]){
-                    dp[index1][index2]=1+f(index1-1,index2-1,text1,text2,dp);
+                    dp[index1][index2]=1+dp[index1-1][index2-1];
                 }
                 else{
-                dp[index1][index2]=max(f(index1-1,index2,text1,text2,dp),f(index1,index2-1,text1,text2,dp));
+                dp[index1][index2]=max(dp[index1-1][index2],dp[index1][index2-1]);
                 }
             }
         }
         return dp[n][m];
     }
+    //space optimal
+
 };
