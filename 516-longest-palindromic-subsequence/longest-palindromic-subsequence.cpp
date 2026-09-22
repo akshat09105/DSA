@@ -3,7 +3,7 @@ public:
     string reverse(string s){
         int r=s.size()-1;
         int l=0;
-        while(l<=r){
+        while(l<r){
             swap(s[l],s[r]);
             l++;r--;
         }
