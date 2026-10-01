@@ -9,8 +9,8 @@ public:
         return s;
     }
     string shortestCommonSupersequence(string s1, string s2) {
-        int n=s1.size();//s1
-        int m=s2.size();//s2
+        int n=s1.size();//s1->vertical in dp table
+        int m=s2.size();//s2->horizontal in dp table
         vector<vector<int>>dp(n+1,vector<int>(m+1,0));
         for(int i=1;i<=n;i++){
             for(int j=1;j<=m;j++){
