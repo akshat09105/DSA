@@ -17,9 +17,7 @@ public:
                 if(s1[i-1]==s2[j-1]){
                     dp[i][j]=1+dp[i-1][j-1];
                 }
-                else{
-                    dp[i][j]=max(dp[i][j-1],dp[i-1][j]);
-                }
+                else dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
             }
         }
         //tracing it back to get superString here will not just print LCS here we print all but will focus if elements are part of LCS will be printed once
