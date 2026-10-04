@@ -17,7 +17,7 @@ public:
         return f(s,t,n-1,m-1,dp);
     }
     //tabulation
-    int numDistinct(string s, string t) {
+    int numDistinctt(string s, string t) {
         int n=s.size();int m=t.size();
         //have to do shiting to solve this as ind1 and ind2 can't be -1
         vector<vector<double>>dp(n+1,vector<double>(m+1,0));
@@ -35,4 +35,22 @@ public:
         return (int)dp[n][m];
     }
     //2d space optimization
+    int numDistinct(string s, string t) {
+        int n=s.size();int m=t.size();
+        //have to do shiting to solve this as ind1 and ind2 can't be -1
+        vector<double>prev(m+1,0);prev[0]=1;
+        
+        
+        for(int ind1=1;ind1<=n;ind1++){
+            vector<double>curr(m+1,0);curr[0]=1;
+            for(int ind2=1;ind2<=m;ind2++){
+                if(s[ind1-1]==t[ind2-1]){
+                    curr[ind2]=prev[ind2-1]+prev[ind2];
+                }
+                else curr[ind2]=prev[ind2];
+            }
+            prev=curr;
+        }
+        return (int)prev[m];
+    }
 };
