@@ -17,7 +17,7 @@ public:
         return f(word1,word2,n,m,dp);
     }
     //tabulation
-    int minDistance(string word1, string word2) {
+    int minDistancee(string word1, string word2) {
         int n=word1.size();int m=word2.size();
         vector<vector<int>>dp(n+1,vector<int>(m+1,0));
         for(int i=0;i<=n;i++)dp[i][0]=i;
@@ -35,5 +35,27 @@ public:
             }
         }
         return dp[n][m];
+    }
+    //space optimized
+    int minDistance(string word1, string word2) {
+        int n=word1.size();int m=word2.size();
+        vector<int>prev(m+1,0);
+        vector<int>curr(m+1,0);
+        for(int j=0;j<=m;j++)prev[j]=j;
+        for(int i=1;i<=n;i++){
+            curr[0]=i;
+            for(int j=1;j<=m;j++){
+                if(word1[i-1]==word2[j-1])curr[j]=0+prev[j-1];
+                else{ 
+                    int p1=1+curr[j-1];
+                    int p2=1+prev[j];
+                    int p3=1+prev[j-1];
+                
+                    curr[j]=min(p1,min(p2,p3));
+                }
+            }
+            prev=curr;
+        }
+        return prev[m];
     }
 };
