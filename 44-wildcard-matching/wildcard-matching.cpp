@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //memoization with shifting
     int f(string &s,string &p,int i,int j,vector<vector<int>>&dp){
         if(i==0&&j==0)return true;
         if(i==0)return false;
@@ -23,5 +24,5 @@ public:
         vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
         return f(s,p,n,m,dp);
     }
-    
+    //tabulation
 };
