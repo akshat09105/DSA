@@ -25,7 +25,7 @@ public:
         return f(s,p,n,m,dp);
     }
     //tabulation
-    bool isMatch(string p, string s) {
+    bool isMatcH(string p, string s) {
         int n=s.size();int m=p.size();
         vector<vector<int>>dp(n+1,vector<int>(m+1,0));
         dp[0][0]=1;
@@ -54,5 +54,37 @@ public:
             }
         }
         return dp[n][m];
+    }
+    //only 2 array space optimal can done as same row is used
+    //tabulation
+    bool isMatch(string p, string s) {
+        int n=s.size();int m=p.size();
+        vector<int>prev(m+1,0);vector<int>curr(m+1,0);
+        prev[0]=1;
+        for(int j=1;j<=m;j++)prev[j]=false;//case for i=0
+        //base case is done now
+        for(int i=1;i<=n;i++){
+            bool flag=true;
+            for(int ii=1;ii<=i;ii++){//2nd base case
+                if(s[ii-1]!='*'){
+                    flag=false;
+                    break;
+                }
+            }
+            curr[0]=flag;
+            for(int j=1;j<=m;j++){
+                if(s[i-1]==p[j-1]||s[i-1]=='?'){
+                    curr[j]=prev[j-1];
+                }
+                else if(s[i-1]=='*'){
+                    curr[j]=prev[j]||curr[j-1];
+                }
+                else{
+                    curr[j]=false;
+                }
+            }
+            prev=curr;
+        }
+        return prev[m];
     }
 };
