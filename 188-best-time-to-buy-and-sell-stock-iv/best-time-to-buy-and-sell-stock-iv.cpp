@@ -1,36 +1,25 @@
 class Solution {
 public:
+    int f(vector<int>& prices,int index,int n,int total_transaction,int k,vector<vector<int>>&dp){
+        if(index==n){//base case
+            return 0;
+        }
+        if(total_transaction==2*k+1){
+            return 0;
+        }
+        if(dp[index][total_transaction]!=-1)return dp[index][total_transaction];
+        int profit;
+        if(total_transaction%2==0){
+            profit=max(-prices[index]+f(prices,index+1,n,total_transaction+1,k,dp),0+f(prices,index+1,n,total_transaction,k,dp));
+        }
+        else{
+            profit=max(prices[index]+f(prices,index+1,n,total_transaction+1,k,dp),0+f(prices,index+1,n,total_transaction,k,dp));
+        }
+        return dp[index][total_transaction]=profit;
+    }
     int maxProfit(int k, vector<int>& prices) {
         int n=prices.size();
-        vector<vector<int>>prev(2,vector<int>(k+1,0));
-        vector<vector<int>>curr(2,vector<int>(k+1,0));
-        for(int i=0;i<=1;i++){//base*cap
-            for(int j=0;j<=k;j++){
-                prev[i][j]=0;
-            }
-        }
-        for(int i=0;i<n;i++){
-            for(int buy=0;buy<=1;buy++){
-                prev[buy][0]=0;
-            }
-        }
-        
-        for(int index=n-1;index>=0;index--){
-            for(int buy=0;buy<=1;buy++){
-                for(int cap=1;cap<=k;cap++){
-                    int profit;
-                    if(buy){//buy=1 means you have to buy
-                    profit=max(-prices[index]+prev[0][cap],0+prev[1][cap]);
-                    }
-                    else{
-                        profit=max(prices[index]+prev[1][cap-1],0+prev[0][cap]);
-                    }
-                    curr[buy][cap]=profit;
-                }
-            }
-            prev=curr;
-        }
-        return prev[1][k];
+        vector<vector<int>>dp(n,vector<int>(2*k+1,-1));
+        return f(prices,0,n,0,k,dp);
     }
-    
 };
