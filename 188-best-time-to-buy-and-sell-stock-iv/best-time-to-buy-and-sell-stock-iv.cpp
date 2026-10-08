@@ -4,7 +4,7 @@ public:
         if(index==n){//base case
             return 0;
         }
-        if(total_transaction==2*k+1){
+        if(total_transaction==2*k){
             return 0;
         }
         if(dp[index][total_transaction]!=-1)return dp[index][total_transaction];
@@ -19,7 +19,7 @@ public:
     }
     int maxProfit(int k, vector<int>& prices) {
         int n=prices.size();
-        vector<vector<int>>dp(n,vector<int>(2*k+1,-1));
+        vector<vector<int>>dp(n,vector<int>(2*k,-1));
         return f(prices,0,n,0,k,dp);
     }
 };
