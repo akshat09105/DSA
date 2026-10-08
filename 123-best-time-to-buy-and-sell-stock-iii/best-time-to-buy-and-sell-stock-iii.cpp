@@ -22,7 +22,7 @@ public:
         return f(prices,1,0,n,2,dp);
     }
     //Tabulation 1)base 2)for loop 3)copy
-    int maxProfit(vector<int>& prices) {
+    int maxPprofit(vector<int>& prices) {
         int n=prices.size();
         vector<vector<vector<int>>>dp(n+1,vector<vector<int>>(2,vector<int>(3,-1)));
         for(int i=0;i<=1;i++){
@@ -51,5 +51,38 @@ public:
             }
         }
         return dp[0][1][2];
+    }
+    //Space Optimization
+    int maxProfit(vector<int>& prices) {
+        int n=prices.size();
+        vector<vector<int>>prev(2,vector<int>(3,0));
+        vector<vector<int>>curr(2,vector<int>(3,0));
+        for(int i=0;i<=1;i++){
+            for(int j=0;j<=2;j++){
+                prev[i][j]=0;
+            }
+        }
+        for(int i=0;i<n;i++){
+            for(int buy=0;buy<=1;buy++){
+                prev[buy][0]=0;
+            }
+        }
+        
+        for(int index=n-1;index>=0;index--){
+            for(int buy=0;buy<=1;buy++){
+                for(int cap=1;cap<=2;cap++){
+                    int profit;
+                    if(buy){//buy=1 means you have to buy
+                    profit=max(-prices[index]+prev[0][cap],0+prev[1][cap]);
+                    }
+                    else{
+                        profit=max(prices[index]+prev[1][cap-1],0+prev[0][cap]);
+                    }
+                    curr[buy][cap]=profit;
+                }
+            }
+            prev=curr;
+        }
+        return prev[1][2];
     }
 };
