@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //Memoization
     int f(vector<int>& prices,int index,int n,int total_transaction,int k,vector<vector<int>>&dp){
         if(index==n){//base case
             return 0;
@@ -17,9 +18,34 @@ public:
         }
         return dp[index][total_transaction]=profit;
     }
-    int maxProfit(int k, vector<int>& prices) {
+    int maxProfitt(int k, vector<int>& prices) {
         int n=prices.size();
         vector<vector<int>>dp(n,vector<int>(2*k,-1));
         return f(prices,0,n,0,k,dp);
+    }
+    //Tabulation
+    int maxProfit(int k, vector<int>& prices) {
+        int n=prices.size();
+        vector<vector<int>>dp(n+1,vector<int>(2*k+1,-1));
+        //base case
+        for(int i=0;i<=2*k;i++){
+            dp[n][i]=0;
+        }
+        for(int i=0;i<=n;i++){
+            dp[i][2*k]=0;
+        }
+        for(int i=n-1;i>=0;i--){
+            for(int total_transaction=0;total_transaction<2*k;total_transaction++){
+                int profit;
+                if(total_transaction%2==0){
+                    profit=max(-prices[i]+dp[i+1][total_transaction+1],0+dp[i+1][total_transaction]);
+                }
+                else{
+                    profit=max(prices[i]+dp[i+1][total_transaction+1],0+dp[i+1][total_transaction]);
+                }
+                dp[i][total_transaction]=profit;
+            }
+        }
+        return dp[0][0];
     }
 };
