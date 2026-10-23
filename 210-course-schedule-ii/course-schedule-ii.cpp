@@ -1,53 +1,31 @@
 class Solution {
 public:
-    bool dfs(int src, vector<int>& vis, vector<int>& pathVis,
-             stack<int>& st, vector<int> adj[]) {
-
-        vis[src] = 1;
-        pathVis[src] = 1;
-
-        for (auto it : adj[src]) {
-            if (!vis[it]) {
-                if (dfs(it, vis, pathVis, st, adj))
-                    return true;
-            }
-            else if (pathVis[it]) {
-                return true;
-            }
-        }
-
-        pathVis[src] = 0;
-        st.push(src);
-        return false;
-    }
-
-    vector<int> findOrder(int numCourses,
-                          vector<vector<int>>& prerequisites) {
-
-        vector<int> adj[numCourses];
-
-        for (int i = 0; i < prerequisites.size(); i++) {
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<int>adj[numCourses];
+        for(int i=0;i<prerequisites.size();i++){
             adj[prerequisites[i][1]].push_back(prerequisites[i][0]);
         }
-
-        stack<int> st;
-        vector<int> vis(numCourses, 0);
-        vector<int> pathVis(numCourses, 0);
-
-        for (int i = 0; i < numCourses; i++) {
-            if (!vis[i]) {
-                if (dfs(i, vis, pathVis, st, adj))
-                    return {};
+        vector<int>inOrder(numCourses,0);
+        for(int i=0;i<prerequisites.size();i++){
+            inOrder[prerequisites[i][0]]++;
+        }
+        queue<int>q;
+        for(int i=0;i<numCourses;i++){
+            if(inOrder[i]==0)q.push(i);
+        }
+        vector<int>ans;
+        while(!q.empty()){
+            int node=q.front();q.pop();
+            ans.push_back(node);
+            for(auto it:adj[node]){
+                inOrder[it]--;
+                if(inOrder[it]==0){
+                    q.push(it);
+                }
             }
         }
-
-        vector<int> ans;
-
-        while (!st.empty()) {
-            ans.push_back(st.top());
-            st.pop();
-        }
-
+        vector<int>d;
+        if(ans.size()!=numCourses)return d;
         return ans;
     }
 };
