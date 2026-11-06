@@ -3,12 +3,12 @@ public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
         if(grid[0][0]!=0)return -1;
         int n=grid.size();int m=grid[0].size();
-        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
+        queue<pair<int,pair<int,int>>>pq;
         pq.push({1,{0,0}});
         vector<vector<int>>dist(n,vector<int>(m,1e9));        
         dist[0][0]=1;
         while(!pq.empty()){
-            auto it=pq.top();
+            auto it=pq.front();
             int dis=it.first;
             int x=it.second.first;
             int y=it.second.second;
