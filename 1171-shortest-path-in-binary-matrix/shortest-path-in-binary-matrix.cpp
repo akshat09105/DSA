@@ -13,6 +13,7 @@ public:
             int x=it.second.first;
             int y=it.second.second;
             pq.pop();
+            if(dist[x][y]<dis)continue;
             for(int dx=-1;dx<=1;dx++){
                 for(int dy=-1;dy<=1;dy++){
                     int adjx=x+dx;int adjy=y+dy;
