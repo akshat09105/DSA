@@ -17,17 +17,12 @@ public:
                 for(int dy=-1;dy<=1;dy++){
                     int adjx=x+dx;int adjy=y+dy;
                     if(adjx>=0&&adjx<n&&adjy>=0&&adjy<m){
-                        if(grid[adjx][adjy]==0){
-                        if(abs(dx)==abs(dy)){
-                            if(dis+1<dist[adjx][adjy]){
+                        if(grid[adjx][adjy]==0&&dis+1<dist[adjx][adjy]){
+                        
+                            
                             pq.push({dis+1,{adjx,adjy}});
                             dist[adjx][adjy]=dis+1;
-                            }
-                        }
-                        else if(dis+1<dist[adjx][adjy]){
-                            pq.push({dis+1,{adjx,adjy}});
-                            dist[adjx][adjy]=dis+1;
-                        }
+                        
                         }
                     }
                     
