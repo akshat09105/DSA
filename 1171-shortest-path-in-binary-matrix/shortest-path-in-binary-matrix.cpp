@@ -2,6 +2,7 @@ class Solution {
 public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
         if(grid[0][0]!=0)return -1;
+        if(grid.size()==1&&grid[0].size()==1)return 1;
         int n=grid.size();int m=grid[0].size();
         queue<pair<int,pair<int,int>>>pq;
         pq.push({1,{0,0}});
@@ -20,7 +21,7 @@ public:
                     if(adjx>=0&&adjx<n&&adjy>=0&&adjy<m){
                         if(grid[adjx][adjy]==0&&dis+1<dist[adjx][adjy]){
                         
-                            
+                            if(adjx==n-1&&adjy==n-1)return dis+1;
                             pq.push({dis+1,{adjx,adjy}});
                             dist[adjx][adjy]=dis+1;
                         
@@ -30,9 +31,6 @@ public:
                 }
             }
         }   
-        if((dist[n-1][m-1]==1e9)){
-            return -1;
-        }
-        return dist[n-1][m-1];
+        return -1;
     }
 };
