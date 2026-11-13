@@ -24,7 +24,7 @@ public:
         for(int j=0;j<n;j++){
             int ConnectedCity=0;
             for(int i=0;i<n;i++){
-                if(dist[i][j]<=distanceThreshold){
+                if(i!=j&&dist[i][j]<=distanceThreshold){
                     ConnectedCity++;
                 } 
             }
